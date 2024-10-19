@@ -12,7 +12,7 @@ using UnityEngine;
         public float speed;
         [Range(1, 5)]
         public int jumpForce;
-        Vector3 movement;
+        Vector2 movement;
         [SerializeField] Vector2 gravity;
 
         [Header("Rotation Variables")]
