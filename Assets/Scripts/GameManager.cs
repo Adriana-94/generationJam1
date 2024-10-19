@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
     public enum GameState { Playing, Paused,GameOver};
     public GameState state;
     public int playScore = 0;
+
+    [SerializeField] private GameObject playButton;
+    [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject menuPausa;
+    
     private void Awake()
     {
 
@@ -23,6 +28,15 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
     }
+    public void PlayButtonClicked()
+    {
+        SetGameState(GameState.Playing);
+    }
+
+    public void PauseButtonClicked()
+    {
+        SetGameState(GameState.Paused);
+    }
 
     public void SetGameState(GameState newState)
     {
@@ -33,10 +47,15 @@ public class GameManager : MonoBehaviour
             case GameState.Playing:
                 // Lógica para reanudar el juego
                 Time.timeScale = 1;
+                pauseButton.SetActive(true); // Activar el boton
+                menuPausa.SetActive(false); // Desactivar el menu de pausa
                 break;
             case GameState.Paused:
                 // Lógica para pausar el juego
-                Time.timeScale = 0;
+                Time.timeScale = 0f;
+                pauseButton.SetActive(false); // Desactivar el boton
+                menuPausa.SetActive(true); // Activar el menu de pau
+
                 break;
             case GameState.GameOver:
                 // Lógica para finalizar el juego
