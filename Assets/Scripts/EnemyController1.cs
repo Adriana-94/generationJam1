@@ -4,26 +4,24 @@ using UnityEngine;
 
 public class EnemyController1 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    float speedEnemy = 5.0f;
-    Rigidbody2D rbEnemy;
-    Transform player;
+    public float speedEnemy = 5.0f;  // Velocidad del enemigo
+    private Rigidbody2D rbEnemy;
+    private Transform player;
+
     void Start()
     {
         rbEnemy = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Usamos FixedUpdate para que el movimiento estÃ© sincronizado con la fÃ­sica
+    void FixedUpdate()
     {
-        // Convertir la posición del jugador a Vector2
-        Vector2 playerPosition = new Vector2(player.position.x, rbEnemy.position.y); // Mantener la posición Y del enemigo
+        // Direccion hacia el jugador
+        Vector2 direction = (player.position - transform.position).normalized;
 
-        // Calcular la dirección solo en el eje X
-        Vector2 lookDirection = new Vector2(playerPosition.x - rbEnemy.position.x, 0).normalized;
-
-        // Aplicar la fuerza solo en el eje X
-        rbEnemy.AddForce(lookDirection * speedEnemy);
+        // Aplicar velocidad solo en el eje X y mantener la velocidad en Y
+        rbEnemy.velocity = new Vector2(direction.x * speedEnemy, rbEnemy.velocity.y);
     }
 }
+
