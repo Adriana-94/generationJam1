@@ -76,10 +76,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-
-
-
     void GrabObject()
     {
         isHolding = true;
