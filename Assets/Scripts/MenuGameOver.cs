@@ -25,7 +25,7 @@ public class MenuGameOver : MonoBehaviour
 
     private void ActivarMenu()
     {
-        menuGameOver.SetActive(false); // Activa el menú Game Over
+        menuGameOver.SetActive(true); // Activa el menú Game Over
     }
 
     public void Reiniciar()
