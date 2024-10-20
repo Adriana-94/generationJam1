@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
 
     // Agarrar cosas
-    public float throwForce = 0.2f;  // Reduce la fuerza a un valor más bajo
+    public float throwForce = 0.1f;  // Reduce la fuerza a un valor más bajo
     private GameObject objectToGrab; // Objeto que se puede agarrar
     private bool isHolding = false;  // Estado de si el jugador está sosteniendo un objeto
     private Transform grabPoint;     // Lugar donde el objeto será "pegado" cuando se agarre
