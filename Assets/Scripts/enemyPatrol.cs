@@ -4,32 +4,43 @@ using UnityEngine;
 
 public class enemyPatrol : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject PointA;
-    public GameObject PointB;
     private Rigidbody2D rb;
-    private Animator animator;
-    private Transform currentPoint;
-    private float speed;
+    public float speed = 2f;
+    private bool movingRight = true;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        currentPoint = PointB.transform;
+        rb = GetComponent<Rigidbody2D>(); // Obtener el Rigidbody2D
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        Vector2 point = currentPoint.position - transform.position;
-        if(currentPoint = PointB.transform)
+        // Movimiento hacia la derecha o izquierda
+        if (movingRight)
         {
-            rb.velocity = new Vector2(speed,0);
+            rb.velocity = new Vector2(speed, rb.velocity.y); // Mover hacia la derecha
         }
-        else 
-        { 
-            rb.velocity = new Vector2 (-speed,0);
+        else
+        {
+            rb.velocity = new Vector2(-speed, rb.velocity.y); // Mover hacia la izquierda
         }
+    }
+
+    // Cambiar de dirección al tocar un Trigger
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Limit")) // Verificar si el enemigo ha tocado un límite
+        {
+            Flip();
+        }
+    }
+
+    // Método para voltear la dirección
+    void Flip()
+    {
+        movingRight = !movingRight; // Cambiar la dirección
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1; // Invertir el sprite horizontalmente
+        transform.localScale = theScale;
     }
 }
