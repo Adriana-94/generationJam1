@@ -43,4 +43,14 @@ public class enemyPatrol : MonoBehaviour
         theScale.x *= -1; // Invertir el sprite horizontalmente
         transform.localScale = theScale;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Grabbable"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
 }
