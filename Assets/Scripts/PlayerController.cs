@@ -86,18 +86,21 @@ public class PlayerController : MonoBehaviour
 
     void ThrowObject()
     {
-        isHolding = false;
-        objectToGrab.transform.SetParent(null); // Soltar el objeto
-        Rigidbody2D rb = objectToGrab.GetComponent<Rigidbody2D>();
-        rb.isKinematic = false; // Volver a activar las físicas
-        rb.gravityScale = 1;
+        if (isHolding)
+        {
+            isHolding = false;
+            objectToGrab.transform.SetParent(null); // Soltar el objeto
+            Rigidbody2D rb = objectToGrab.GetComponent<Rigidbody2D>();
+            rb.isKinematic = false; // Volver a activar las físicas
+            rb.gravityScale = 1;
 
-        // Aplicar la fuerza para lanzar el objeto
-        rb.AddForce(transform.right * throwForce, ForceMode2D.Impulse);
+            // Aplicar la fuerza para lanzar el objeto
+            rb.AddForce(transform.right * throwForce, ForceMode2D.Impulse);
 
-        // Limitar la velocidad máxima después de lanzar
-        rb.velocity = Vector2.ClampMagnitude(rb.velocity, 10f); // Limita la velocidad a 10 unidades
-        objectToGrab = null;
+            // Limitar la velocidad máxima después de lanzar
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, 10f); // Limita la velocidad a 10 unidades
+            objectToGrab = null;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

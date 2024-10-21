@@ -2333,8 +2333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8122cee0fca7c942b0e5c724b906db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 2
-  vidaActual: 2
+  vidaMaxima: 3
+  vidaActual: 3
   cambioVida:
     m_PersistentCalls:
       m_Calls: []
